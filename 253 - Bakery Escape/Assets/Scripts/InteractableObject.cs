@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 public class InteractableObject : MonoBehaviour
 {
     public string messageOnClick;
+    private TextMeshProUGUI outputTextBox;
     public GameObject feedbackUI;
-    private Animator objAnimator;
-    public Animation onClickAnim;
+    public Animator objAnimator;
+    public bool anim1Bool = false;
     public Material glowMaterial;
 
     // Start is called before the first frame update
     void Start()
     {
+        outputTextBox = GameObject.FindGameObjectWithTag("outputTextBox").GetComponent<TextMeshProUGUI>();
+        
         feedbackUI.SetActive(false);
-        objAnimator = this.gameObject.GetComponent<Animator>();
+        
         //glowMaterial.SetFloat
     }
 
@@ -27,29 +32,39 @@ public class InteractableObject : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log(this.gameObject.name + " has been clicked");
-        Debug.Log(messageOnClick);
-        if (feedbackUI != null)
-        {
-            feedbackUI.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+        outputTextBox.text = messageOnClick;
 
-        }
+        //if (feedbackUI != null)
+        //{
+        //    feedbackUI.SetActive(true);
+        //    Cursor.lockState = CursorLockMode.None;
 
-        if(onClickAnim != null)
-        {
-            objAnimator.Play("");
-        }
+        //}
+        //objAnimator.SetBool("anim1Bool", true);
+        //if (objAnimator != null)
+        //{
+        //    objAnimator.SetBool("anim1Bool", true);
+        //}
     }
 
     private void OnMouseOver()
     {
         Debug.Log("This object is interactable");
-        hoverLight.intensity = 2f;
+        //hoverLight.intensity = 2f;
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            if(feedbackUI != null)
+            {
+                feedbackUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
     }
 
     private void OnMouseExit()
     {
-        hoverLight.intensity = 0f;
+       //hoverLight.intensity = 0f;
     }
 
 }
