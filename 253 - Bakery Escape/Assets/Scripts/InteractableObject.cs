@@ -18,7 +18,11 @@ public class InteractableObject : MonoBehaviour
     {
         outputTextBox = GameObject.FindGameObjectWithTag("outputTextBox").GetComponent<TextMeshProUGUI>();
         
-        feedbackUI.SetActive(false);
+        if(feedbackUI != null)
+        {
+            feedbackUI.SetActive(false);
+        }
+        
         
         //glowMaterial.SetFloat
     }
