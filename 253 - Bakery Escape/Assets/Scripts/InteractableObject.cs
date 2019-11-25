@@ -8,15 +8,26 @@ public class InteractableObject : MonoBehaviour
 {
     public string messageOnClick;
     private TextMeshProUGUI outputTextBox;
+    private GameObject outputImage;
     public GameObject feedbackUI;
     public Animator objAnimator;
     public bool anim1Bool = false;
     public Material glowMaterial;
+    private GameObject player;
+
+    public GameObject popUpGO;
+    public popUps popUpSystem;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        popUpSystem = GameObject.FindGameObjectWithTag("Canvas").GetComponent<popUps>();
+
         outputTextBox = GameObject.FindGameObjectWithTag("outputTextBox").GetComponent<TextMeshProUGUI>();
+        outputImage = GameObject.FindGameObjectWithTag("outputImage");
         
         if(feedbackUI != null)
         {
@@ -35,40 +46,50 @@ public class InteractableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log(this.gameObject.name + " has been clicked");
-        outputTextBox.text = messageOnClick;
+        if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8)
+        {
+            outputImage.SetActive(true);
+            popUpSystem.hidePrompts();
+            outputTextBox.text = messageOnClick;
 
-        //if (feedbackUI != null)
-        //{
-        //    feedbackUI.SetActive(true);
-        //    Cursor.lockState = CursorLockMode.None;
+        }
+        
+    }
 
-        //}
-        //objAnimator.SetBool("anim1Bool", true);
-        //if (objAnimator != null)
-        //{
-        //    objAnimator.SetBool("anim1Bool", true);
-        //}
+    
+    private void OnMouseEnter()
+    {
+        if(Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && outputImage != null)
+        {
+            Debug.Log("This object is interactable");
+
+            popUpSystem.showClickPrompt();
+        }
     }
 
     private void OnMouseOver()
     {
-        Debug.Log("This object is interactable");
-        //hoverLight.intensity = 2f;
-
-        if(Input.GetKey(KeyCode.Space))
+        if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && outputTextBox.text == "")
         {
-            if(feedbackUI != null)
-            {
-                feedbackUI.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-            }
+            popUpSystem.showClickPrompt();
         }
+
     }
 
     private void OnMouseExit()
     {
-       //hoverLight.intensity = 0f;
+        popUpSystem.hidePrompts();
+        outputTextBox.text = "";
+        outputImage.SetActive(false);
+    }
+
+    private void showPopUp(GameObject popUp)
+    {
+        popUp.SetActive(true);
+    }
+    private void hidePopUp(GameObject popUp)
+    {
+        popUp.SetActive(false);
     }
 
 }
