@@ -18,6 +18,9 @@ public class InteractableObject : MonoBehaviour
     public GameObject popUpGO;
     public popUps popUpSystem;
 
+    
+    public noteSystem noteSystem;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +75,23 @@ public class InteractableObject : MonoBehaviour
         if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && outputTextBox.text == "")
         {
             popUpSystem.showClickPrompt();
+        }
+
+        if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && Input.GetKeyDown(KeyCode.E))
+        {
+            if(noteSystem != null)
+            {
+                if(noteSystem.isActiveAndEnabled)
+                {
+                    noteSystem.closeNote();
+                }
+                else
+                {
+                    noteSystem.openNote();
+                }
+                
+            }
+            
         }
 
     }

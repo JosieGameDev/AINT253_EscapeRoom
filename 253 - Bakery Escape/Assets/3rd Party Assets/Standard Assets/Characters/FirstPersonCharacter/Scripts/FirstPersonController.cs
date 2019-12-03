@@ -24,7 +24,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_MoveDir = Vector3.zero;
         private CharacterController m_CharacterController;
         private CollisionFlags m_CollisionFlags;
-        private bool m_PreviouslyGrounded;
+        //private bool m_PreviouslyGrounded;
         private Vector3 m_OriginalCameraPosition;
        
         private float m_NextStep;
@@ -48,19 +48,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
-            // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
-            {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
-
-            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
-            {
-                m_MoveDir.y = 0f;
-                //m_Jumping = false;
-            }
-           
-            m_PreviouslyGrounded = m_CharacterController.isGrounded;
+            
         }
 
 
@@ -91,7 +79,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-       
+        public void lockCursor()
+        {
+            m_MouseLook.SetCursorLock(true);
+        }
+
+        public void unlockCursor()
+        {
+            m_MouseLook.SetCursorLock(false);
+        }
+
 
         private void UpdateCameraPosition(float speed)
         {
@@ -108,15 +105,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
-            bool waswalking = m_IsWalking;
 
-#if !MOBILE_INPUT
-            // On standalone builds, walk/run speed is modified by a key press.
-            // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
-#endif
-            // set the desired speed to be walking or running
-            //speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:
@@ -135,20 +124,5 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-            Rigidbody body = hit.collider.attachedRigidbody;
-            //dont move the rigidbody if the character is on top of it
-            if (m_CollisionFlags == CollisionFlags.Below)
-            {
-                return;
-            }
-
-            if (body == null || body.isKinematic)
-            {
-                return;
-            }
-            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
-        }
     }
 }
