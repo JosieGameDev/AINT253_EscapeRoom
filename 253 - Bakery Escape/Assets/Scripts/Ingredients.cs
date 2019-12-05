@@ -4,28 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Ingredients : MonoBehaviour
+[System.Serializable]
+public class Ingredients
 {
     public string ingredientName;
     public string measurementType; // eg cups, grams, units
     public int maxNumber;
     public int minNumber;
 
-    public int recipeAmountNeeded;
+    public int amount;
 
     public Ingredients(string name, int quantity)
     {
         this.ingredientName = name;
-        this.recipeAmountNeeded = quantity;
+        this.amount = quantity;
     }
     public int getAmount()
     {
-        return this.recipeAmountNeeded;
+        return this.amount;
     }
 
     public void setAmount(int newAmount )
     {
-        this.recipeAmountNeeded = newAmount;
+        this.amount = newAmount;
     }
 
     // Start is called before the first frame update

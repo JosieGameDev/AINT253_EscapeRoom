@@ -25,10 +25,12 @@ public class AddIngredient : MonoBehaviour
 
     public void updateQuantity()
     {
-        if(ingredientLabel.text == "butter")
-        {
-            theRecipe.butterAmount = int.Parse(amountDropdown.captionText.text);
-        }
+        //if(ingredientLabel.text == "butter")
+        //{
+        //    theRecipe.butterAmount = int.Parse(amountDropdown.captionText.text);
+        //}
+
+        theRecipe.updateUserIngredients(ingredientName, int.Parse(amountDropdown.captionText.text));
 
         
     }
