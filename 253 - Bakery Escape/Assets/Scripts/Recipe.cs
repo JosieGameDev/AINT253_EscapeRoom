@@ -64,6 +64,15 @@ public class Recipe : MonoBehaviour
         return theyMatch;
     }
 
+    public string returnCurrentIngredientString()
+    {
+        string output;
+        output = "Butter: " + usersIngredients[0].amount + " Sugar: " + usersIngredients[1].amount +
+            " Eggs: " + usersIngredients[2].amount + " Flour: " + usersIngredients[3].amount + " Vanilla: " + usersIngredients[4].amount;
+
+        return output;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -35,6 +35,12 @@ public class AddIngredient : MonoBehaviour
         
     }
 
+    public void updateIngredientToAdd(string newIngName)
+    {
+        ingredientName = newIngName;
+        ingredientLabel.text = ingredientName;
+    }
+
     // Update is called once per frame
     void Update()
     {

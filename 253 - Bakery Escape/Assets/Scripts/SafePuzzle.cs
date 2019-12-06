@@ -12,6 +12,7 @@ public class SafePuzzle : MonoBehaviour
     //public InputField safeInput;
     public TMP_InputField safeInput;
     public int safePassword;
+    public GameObject safeNote;
     
     
     
@@ -36,6 +37,7 @@ public class SafePuzzle : MonoBehaviour
         {
             unlockSafe();
             Debug.Log("you did it! safe open");
+            gameObject.GetComponent<noteSystem>().closeNote();
         }
         else
         {

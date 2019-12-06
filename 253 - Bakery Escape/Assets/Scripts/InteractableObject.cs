@@ -7,7 +7,7 @@ using TMPro;
 public class InteractableObject : MonoBehaviour
 {
     public string messageOnClick;
-    private TextMeshProUGUI outputTextBox;
+    public TextMeshProUGUI outputTextBox;
     private GameObject outputImage;
     public GameObject feedbackUI;
     public Animator objAnimator;
@@ -29,7 +29,7 @@ public class InteractableObject : MonoBehaviour
 
         popUpSystem = GameObject.FindGameObjectWithTag("Canvas").GetComponent<popUps>();
 
-        outputTextBox = GameObject.FindGameObjectWithTag("outputTextBox").GetComponent<TextMeshProUGUI>();
+        //outputTextBox = GameObject.FindGameObjectWithTag("outputTextBox").GetComponent<TextMeshProUGUI>();
         outputImage = GameObject.FindGameObjectWithTag("outputImage");
         
         if(feedbackUI != null)
@@ -87,7 +87,13 @@ public class InteractableObject : MonoBehaviour
                 }
                 else
                 {
+                    if(noteSystem.GetComponent<AddIngredient>() != null)
+                    {
+                        noteSystem.GetComponent<AddIngredient>().updateIngredientToAdd(gameObject.name);
+                    }
+                    
                     noteSystem.openNote();
+                    popUpSystem.hidePrompts();
                 }
                 
             }
