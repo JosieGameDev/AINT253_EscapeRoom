@@ -10,16 +10,16 @@ public class InteractableObject : MonoBehaviour
     public TextMeshProUGUI outputTextBox;
     private GameObject outputImage;
     public GameObject feedbackUI;
-    public Animator objAnimator;
-    public bool anim1Bool = false;
-    public Material glowMaterial;
+    
     private GameObject player;
 
     public GameObject popUpGO;
     public popUps popUpSystem;
 
+    public GameObject HoverLabel;
+
     
-    public noteSystem noteSystem;
+    public noteSystem E_noteSystem;
 
 
     // Start is called before the first frame update
@@ -54,6 +54,11 @@ public class InteractableObject : MonoBehaviour
             outputImage.SetActive(true);
             popUpSystem.hidePrompts();
             outputTextBox.text = messageOnClick;
+            if(E_noteSystem != null)
+            {
+                popUpSystem.showInteractPrompt();
+            }
+            
 
         }
         
@@ -67,6 +72,10 @@ public class InteractableObject : MonoBehaviour
             Debug.Log("This object is interactable");
 
             popUpSystem.showClickPrompt();
+            if(HoverLabel != null)
+            {
+                HoverLabel.SetActive(true);
+            }
         }
     }
 
@@ -79,20 +88,20 @@ public class InteractableObject : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && Input.GetKeyDown(KeyCode.E))
         {
-            if(noteSystem != null)
+            if(E_noteSystem != null)
             {
-                if(noteSystem.isActiveAndEnabled)
+                if(E_noteSystem.isActiveAndEnabled)
                 {
-                    noteSystem.closeNote();
+                    E_noteSystem.closeNote();
                 }
                 else
                 {
-                    if(noteSystem.GetComponent<AddIngredient>() != null)
+                    if(E_noteSystem.GetComponent<AddIngredient>() != null)
                     {
-                        noteSystem.GetComponent<AddIngredient>().updateIngredientToAdd(gameObject.name);
+                        E_noteSystem.GetComponent<AddIngredient>().updateIngredientToAdd(gameObject.name);
                     }
-                    
-                    noteSystem.openNote();
+
+                    E_noteSystem.openNote();
                     popUpSystem.hidePrompts();
                 }
                 
@@ -107,6 +116,10 @@ public class InteractableObject : MonoBehaviour
         popUpSystem.hidePrompts();
         outputTextBox.text = "";
         outputImage.SetActive(false);
+        if (HoverLabel != null)
+        {
+            HoverLabel.SetActive(false);
+        }
     }
 
     private void showPopUp(GameObject popUp)
