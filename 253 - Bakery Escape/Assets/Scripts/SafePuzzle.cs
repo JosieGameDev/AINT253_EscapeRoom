@@ -13,6 +13,7 @@ public class SafePuzzle : MonoBehaviour
     public TMP_InputField safeInput;
     public int safePassword;
     public GameObject safeNote;
+    public GameObject checkMark1;
     
     
     
@@ -22,7 +23,7 @@ public class SafePuzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        checkMark1.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,6 +39,7 @@ public class SafePuzzle : MonoBehaviour
             unlockSafe();
             Debug.Log("you did it! safe open");
             gameObject.GetComponent<noteSystem>().closeNote();
+            checkMark1.SetActive(true);
         }
         else
         {

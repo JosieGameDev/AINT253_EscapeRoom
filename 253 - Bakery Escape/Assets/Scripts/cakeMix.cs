@@ -8,6 +8,7 @@ public class cakeMix : MonoBehaviour
     //public noteSystem showCurrentMix;
     public InteractableObject interaction;
     public GameObject cake;
+    public GameObject check2;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class cakeMix : MonoBehaviour
         {
             Debug.Log("made a perfect cake");
             cake.SetActive(true);
+            check2.SetActive(true);
         }
         else
         {

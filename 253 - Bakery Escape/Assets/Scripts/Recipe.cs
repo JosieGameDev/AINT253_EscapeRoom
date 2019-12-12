@@ -20,8 +20,8 @@ public class Recipe : MonoBehaviour
         recipeIngredients[0] = new Ingredients("butter", 3);
         recipeIngredients[1] = new Ingredients("sugar", 2);
         recipeIngredients[2] = new Ingredients("eggs", 2);
-        recipeIngredients[3] = new Ingredients("flour", 2);
-        recipeIngredients[4] = new Ingredients("vanilla", 2);
+        recipeIngredients[3] = new Ingredients("flour", 1);
+        recipeIngredients[4] = new Ingredients("vanilla", 1);
 
         usersIngredients = new Ingredients[5];
         usersIngredients[0] = new Ingredients("butter", 0);
