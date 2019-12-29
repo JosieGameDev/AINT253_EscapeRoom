@@ -39,6 +39,7 @@ public class Recipe : MonoBehaviour
             if(usersIngredients[i].ingredientName == name)
             {
                 usersIngredients[i].setAmount(newAmount);
+                Debug.Log("ischangingrecipe");
             }
         }
     }

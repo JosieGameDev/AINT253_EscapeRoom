@@ -5,10 +5,9 @@ using UnityEngine;
 public class cakeMix : MonoBehaviour
 {
     public Recipe theRecipe;
-    //public noteSystem showCurrentMix;
-    public InteractableObject interaction;
+    public PanelManage panelManager;
     public GameObject cake;
-    public GameObject check2;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +18,7 @@ public class cakeMix : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        interaction.messageOnClick = theRecipe.returnCurrentIngredientString();
+        
     }
 
     private void OnMouseDown()
@@ -29,11 +28,12 @@ public class cakeMix : MonoBehaviour
 
     public void CookMix()
     {
+        panelManager.togglePanel();
         if(theRecipe.compareWholeRecipe() == true)
         {
             Debug.Log("made a perfect cake");
             cake.SetActive(true);
-            check2.SetActive(true);
+            
         }
         else
         {

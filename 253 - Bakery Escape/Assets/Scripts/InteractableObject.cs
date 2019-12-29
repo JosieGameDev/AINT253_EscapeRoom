@@ -18,7 +18,9 @@ public class InteractableObject : MonoBehaviour
 
     public GameObject HoverLabel;
 
-    
+    public bool isIngredient;
+    public recipeAddIngredients ingredientDetailInPanel;
+
     public noteSystem E_noteSystem;
 
 
@@ -107,6 +109,15 @@ public class InteractableObject : MonoBehaviour
                 
             }
             
+        }
+        if(isIngredient)
+        {
+            if(Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && Input.GetKeyDown(KeyCode.Q))
+            {
+                // collect it!
+                ingredientDetailInPanel.hasBeenFound();
+                Destroy(this.gameObject);
+            }
         }
 
     }
