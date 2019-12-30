@@ -60,8 +60,11 @@ public class InteractableObject : MonoBehaviour
             {
                 popUpSystem.showInteractPrompt();
             }
-            
 
+            if (isIngredient)
+            {
+                popUpSystem.showPickUpPrompt();
+            }
         }
         
     }
@@ -78,6 +81,8 @@ public class InteractableObject : MonoBehaviour
             {
                 HoverLabel.SetActive(true);
             }
+
+            
         }
     }
 
@@ -107,6 +112,10 @@ public class InteractableObject : MonoBehaviour
                     popUpSystem.hidePrompts();
                 }
                 
+            }
+            else if (isIngredient)
+            {
+                popUpSystem.showPickUpPrompt();
             }
             
         }

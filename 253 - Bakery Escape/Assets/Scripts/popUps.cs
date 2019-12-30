@@ -7,13 +7,14 @@ public class popUps : MonoBehaviour
     //vars
     public GameObject clickToExaminePopIp;
     public GameObject pressToInteract;
+    public GameObject qToPickUp;
 
     public GameObject[] popUpArray;
 
     // Start is called before the first frame update
     void Start()
     {
-        popUpArray = new GameObject[] { clickToExaminePopIp, pressToInteract };
+        popUpArray = new GameObject[] { clickToExaminePopIp, pressToInteract, qToPickUp };
     }
 
     // Update is called once per frame
@@ -35,6 +36,12 @@ public class popUps : MonoBehaviour
         hidePrompts();
 
         clickToExaminePopIp.SetActive(true);
+    }
+
+    public void showPickUpPrompt()
+    {
+        hidePrompts();
+        qToPickUp.SetActive(true);
     }
 
     

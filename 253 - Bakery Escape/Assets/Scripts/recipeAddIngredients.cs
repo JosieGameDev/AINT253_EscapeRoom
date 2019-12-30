@@ -12,6 +12,7 @@ public class recipeAddIngredients : MonoBehaviour
     
     public string IngredientName;
     public TextMeshProUGUI amountLabel;
+    public TextMeshProUGUI ingredientNameLabel;
     public int amount;
     public Recipe theRecipe;
 
@@ -26,6 +27,7 @@ public class recipeAddIngredients : MonoBehaviour
     void Start()
     {
         icon.sprite = qMark;
+        ingredientNameLabel.text = "...";
         foreach (Button b in buttons)
         {
             b.interactable = false;
@@ -69,6 +71,7 @@ public class recipeAddIngredients : MonoBehaviour
     {
         //runs when player collects this ingredient, so it can be used here
         icon.sprite = ingredientIcon;
+        ingredientNameLabel.text = IngredientName;
         foreach(Button b in buttons)
         {
             b.interactable = true;
