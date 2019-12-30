@@ -14,6 +14,8 @@ public class SafePuzzle : MonoBehaviour
     public int safePassword;
     public GameObject safeNote;
     public Animator safeAnimator;
+    public GameObject recipeUI;
+    public DialogueTrigger note2trigger;
     
     
     
@@ -39,6 +41,10 @@ public class SafePuzzle : MonoBehaviour
             unlockSafe();
             Debug.Log("you did it! safe open");
             safeAnimator.SetBool("anim1Bool", true);
+
+            note2trigger.triggerDialogue();
+
+            recipeUI.SetActive(true);
             
             gameObject.GetComponent<noteSystem>().closeNote();
         }

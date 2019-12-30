@@ -20,6 +20,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void triggerDialogue()
     {
+        FindObjectOfType<DialogueSystem>().showDialogueBox();
         FindObjectOfType<DialogueSystem>().beginDialogue(dialogueToRun);
     }
 }

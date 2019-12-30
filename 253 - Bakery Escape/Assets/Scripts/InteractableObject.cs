@@ -65,6 +65,11 @@ public class InteractableObject : MonoBehaviour
             {
                 popUpSystem.showPickUpPrompt();
             }
+
+            if(this.gameObject.name == "POSTER")
+            {
+                this.gameObject.GetComponent<posterRip>().destroyPoster();
+            }
         }
         
     }
@@ -72,7 +77,9 @@ public class InteractableObject : MonoBehaviour
     
     private void OnMouseEnter()
     {
-        if(Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && outputImage != null)
+        if(Vector3.Distance(
+            player.
+            transform.position, this.gameObject.transform.position) < 8 && outputImage != null)
         {
             Debug.Log("This object is interactable");
 
@@ -88,7 +95,7 @@ public class InteractableObject : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 && outputTextBox.text == "")
+        if (Vector3.Distance(player.transform.position, this.gameObject.transform.position) < 8 &&  outputTextBox.text == "")
         {
             popUpSystem.showClickPrompt();
         }

@@ -17,6 +17,7 @@ public class PanelManage : MonoBehaviour
     void Start()
     {
         keyToTab = "X";
+        togglePanel();
     }
 
     // Update is called once per frame

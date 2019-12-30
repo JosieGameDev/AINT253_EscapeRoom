@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
     public Queue<string> sentences;
     public DialogueTrigger openingDialogueTrigger;
-    public TextMeshProUGUI dialogueTextBox;
+    //public TextMeshProUGUI dialogueTextBox;
+    public GameObject dialogueTextGO;
+    public Text tempText;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +22,7 @@ public class DialogueSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && dialogueTextBox.isActiveAndEnabled)
+        if(Input.GetKeyDown(KeyCode.Space) && dialogueTextGO.activeSelf)
         {
             displayNextSentence();
         }
@@ -42,10 +45,23 @@ public class DialogueSystem : MonoBehaviour
         if(sentences.Count == 0)
         {
             Debug.Log("end of dialogue");
+            hideDialogueBox();
             return;
         }
 
         string currentSentence = sentences.Dequeue();
-        dialogueTextBox.text = currentSentence;
+        
+        tempText.text = currentSentence;
+    }
+
+    public void showDialogueBox()
+    {
+        dialogueTextGO.SetActive(true);
+    }
+
+    public void hideDialogueBox()
+    {
+        tempText.text = "...";
+        dialogueTextGO.SetActive(false);
     }
 }
