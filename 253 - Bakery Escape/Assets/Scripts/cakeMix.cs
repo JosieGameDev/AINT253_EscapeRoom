@@ -29,17 +29,9 @@ public class cakeMix : MonoBehaviour
     public void CookMix()
     {
         panelManager.togglePanel();
-        if(theRecipe.compareWholeRecipe() == true)
-        {
-            Debug.Log("made a perfect cake");
-            note3Trigger.triggerDialogue();
-            cake.SetActive(true);
-            
-        }
-        else
-        {
-            Debug.Log("uh-oh");
-        }
-        
+
+        note3Trigger.triggerDialogue();
+        cake.SetActive(true);
+
     }
 }

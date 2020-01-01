@@ -16,7 +16,9 @@ public class SafePuzzle : MonoBehaviour
     public Animator safeAnimator;
     public GameObject recipeUI;
     public DialogueTrigger note2trigger;
-    
+
+    public GameObject timer;
+    public MusicManager musicControl;
     
     
     
@@ -47,6 +49,9 @@ public class SafePuzzle : MonoBehaviour
             recipeUI.SetActive(true);
             
             gameObject.GetComponent<noteSystem>().closeNote();
+
+            musicControl.switchToMusic2();
+            timer.SetActive(true);
         }
         else
         {

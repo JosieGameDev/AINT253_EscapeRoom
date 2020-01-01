@@ -5,6 +5,9 @@ using UnityEngine;
 public class DUMBWAITER : MonoBehaviour
 {
     public GameObject cake;
+    public Recipe recipe;
+    public DialogueTrigger winDialogue;
+    public DialogueTrigger loseDialogue;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,14 @@ public class DUMBWAITER : MonoBehaviour
             if(cake.activeSelf == true)
             {
                 Debug.Log("cake sent up");
+                if(recipe.compareWholeRecipe() == true)
+                {
+                    winDialogue.triggerDialogue();
+                }
+                else
+                {
+                    loseDialogue.triggerDialogue();
+                }
             }
             else
             {

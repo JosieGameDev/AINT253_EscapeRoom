@@ -18,6 +18,8 @@ public class PanelManage : MonoBehaviour
     {
         keyToTab = "X";
         togglePanel();
+        togglePanel();
+        togglePanel();
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class PanelManage : MonoBehaviour
         {
             panel.SetActive(false);
             fpc.lockCursor();
+            
         }
         else if (panel.activeSelf == false)
         {
