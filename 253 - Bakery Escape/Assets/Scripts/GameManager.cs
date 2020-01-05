@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Utility;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public FirstPersonController fpc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +33,14 @@ public class GameManager : MonoBehaviour
 
     public void winScreen()
     {
+        fpc.unlockCursor();
         SceneManager.LoadScene("Win");
+
     }
 
     public void loadMenu()
     {
+        fpc.unlockCursor();
         SceneManager.LoadScene("Menu");
     }
 }

@@ -67,7 +67,7 @@ public class DialogueSystem : MonoBehaviour
 
         foreach(AudioSource a in allMusic)
         {
-            a.volume = 0.5f;
+            a.volume = 0.25f;
         }
     }
 

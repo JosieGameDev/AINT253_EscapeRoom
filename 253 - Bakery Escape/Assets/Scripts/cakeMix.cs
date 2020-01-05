@@ -26,7 +26,11 @@ public class cakeMix : MonoBehaviour
     {
         if(allIngsFound())
         {
-            bakeBtn.interactable = true;
+            if(bakeBtn!= null)
+            {
+                bakeBtn.interactable = true;
+            }
+            
         }
     }
 

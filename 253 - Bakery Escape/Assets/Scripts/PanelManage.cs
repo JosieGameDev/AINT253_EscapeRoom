@@ -40,13 +40,18 @@ public class PanelManage : MonoBehaviour
         {
             panel.SetActive(false);
             fpc.lockCursor();
-            
+            fpc.restartMouseLook();
+
         }
         else if (panel.activeSelf == false)
         {
             panel.SetActive(true);
             panel.GetComponent<cakeMix>().updateButtons();
             fpc.unlockCursor();
+
+            fpc.stopMouseLook();
+
+
         }
     }
 }

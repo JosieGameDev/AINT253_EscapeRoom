@@ -8,9 +8,13 @@ public class DUMBWAITER : MonoBehaviour
     public Recipe recipe;
     public DialogueTrigger winDialogue;
     public DialogueTrigger loseDialogue;
+    public bool GameWon = false;
+    public bool GameLost = false;
+    public GameObject dialogueBox;
 
     public AudioSource recordScratch;
     public MusicManager musicManager;
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +24,21 @@ public class DUMBWAITER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameWon && dialogueBox.activeSelf == false )
+        {
+            StartCoroutine("winGame");
+        }
+
+        if (GameLost && dialogueBox.activeSelf == false)
+        {
+            loseRestartMusic();
+        }
+    }
+
+     IEnumerator winGame()
+    {
+        yield return new WaitForSeconds(1);
+        gameManager.winScreen();
     }
 
     private void OnMouseOver()
@@ -36,10 +54,13 @@ public class DUMBWAITER : MonoBehaviour
                 if(recipe.compareWholeRecipe() == true)
                 {
                     winDialogue.triggerDialogue();
+                    GameWon = true;
+                    
                 }
                 else
                 {
                     loseDialogue.triggerDialogue();
+                    GameLost = true;
                 }
             }
             else
@@ -47,5 +68,11 @@ public class DUMBWAITER : MonoBehaviour
                 Debug.Log("Nothing sent");
             }
         }
+    }
+
+    public void loseRestartMusic()
+    {
+        GameLost = false;
+        musicManager.switchToMusic2();
     }
 }
