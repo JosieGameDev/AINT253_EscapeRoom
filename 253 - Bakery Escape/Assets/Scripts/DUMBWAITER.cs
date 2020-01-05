@@ -8,6 +8,9 @@ public class DUMBWAITER : MonoBehaviour
     public Recipe recipe;
     public DialogueTrigger winDialogue;
     public DialogueTrigger loseDialogue;
+
+    public AudioSource recordScratch;
+    public MusicManager musicManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,9 @@ public class DUMBWAITER : MonoBehaviour
         {
             if(cake.activeSelf == true)
             {
+                musicManager.pauseMusic();
+                recordScratch.Play();
+                musicManager.switchToJudgeMusic();
                 Debug.Log("cake sent up");
                 if(recipe.compareWholeRecipe() == true)
                 {

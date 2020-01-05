@@ -45,6 +45,7 @@ public class PanelManage : MonoBehaviour
         else if (panel.activeSelf == false)
         {
             panel.SetActive(true);
+            panel.GetComponent<cakeMix>().updateButtons();
             fpc.unlockCursor();
         }
     }

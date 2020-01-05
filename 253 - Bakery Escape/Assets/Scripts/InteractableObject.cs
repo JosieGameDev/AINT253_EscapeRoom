@@ -23,6 +23,9 @@ public class InteractableObject : MonoBehaviour
 
     public noteSystem E_noteSystem;
 
+    //audio
+    public AudioSource pickUpAudio;
+
 
     // Start is called before the first frame update
     void Start()
@@ -132,6 +135,7 @@ public class InteractableObject : MonoBehaviour
             {
                 // collect it!
                 ingredientDetailInPanel.hasBeenFound();
+                pickUpAudio.Play();
                 Destroy(this.gameObject);
             }
         }

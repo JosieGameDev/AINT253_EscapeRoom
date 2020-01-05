@@ -11,12 +11,17 @@ public class DialogueSystem : MonoBehaviour
     //public TextMeshProUGUI dialogueTextBox;
     public GameObject dialogueTextGO;
     public Text tempText;
+    public AudioSource nextDialogueSound;
+
+    public AudioSource[] allMusic;
 
     // Start is called before the first frame update
     void Start()
     {
+        showDialogueBox();
         sentences = new Queue<string>();
         openingDialogueTrigger.triggerDialogue();
+        displayNextSentence();
     }
 
     // Update is called once per frame
@@ -25,6 +30,7 @@ public class DialogueSystem : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && dialogueTextGO.activeSelf)
         {
             displayNextSentence();
+            nextDialogueSound.Play();
         }
     }
 
@@ -56,11 +62,21 @@ public class DialogueSystem : MonoBehaviour
 
     public void showDialogueBox()
     {
+
         dialogueTextGO.SetActive(true);
+
+        foreach(AudioSource a in allMusic)
+        {
+            a.volume = 0.5f;
+        }
     }
 
     public void hideDialogueBox()
     {
+        foreach (AudioSource a in allMusic)
+        {
+            a.volume = 0.8f;
+        }
         tempText.text = "...";
         dialogueTextGO.SetActive(false);
     }

@@ -21,6 +21,7 @@ public class recipeAddIngredients : MonoBehaviour
     public Image icon; //shows when they have ingredient
     public Sprite qMark;
     public Sprite ingredientIcon;
+    public bool isFound = false;
 
 
     // Start is called before the first frame update
@@ -69,7 +70,7 @@ public class recipeAddIngredients : MonoBehaviour
 
     public void hasBeenFound()
     {
-        Debug.Log("running has been found");
+        isFound = true;
         //runs when player collects this ingredient, so it can be used here
         icon.sprite = ingredientIcon;
         ingredientNameLabel.text = IngredientName;
