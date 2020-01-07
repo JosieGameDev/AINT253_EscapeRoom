@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public void loseScreen()
     {
+
+        fpc.unlockCursor();
         SceneManager.LoadScene("Lose");
     }
 
@@ -40,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     public void loadMenu()
     {
-        fpc.unlockCursor();
         SceneManager.LoadScene("Menu");
     }
 }

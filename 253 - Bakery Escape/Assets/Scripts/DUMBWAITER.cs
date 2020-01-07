@@ -15,6 +15,7 @@ public class DUMBWAITER : MonoBehaviour
     public AudioSource recordScratch;
     public MusicManager musicManager;
     public GameManager gameManager;
+    public tIMER timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,7 @@ public class DUMBWAITER : MonoBehaviour
         {
             if(cake.activeSelf == true)
             {
+                timer.pauseTimer();
                 musicManager.pauseMusic();
                 recordScratch.Play();
                 musicManager.switchToJudgeMusic();
@@ -59,6 +61,7 @@ public class DUMBWAITER : MonoBehaviour
                 }
                 else
                 {
+                    timer.restartTimer();
                     loseDialogue.triggerDialogue();
                     GameLost = true;
                 }

@@ -31,6 +31,14 @@ public class tIMER : MonoBehaviour
 
 
     }
+    public void pauseTimer()
+    {
+        timerIsActive = false;
+    }
+    public void restartTimer()
+    {
+        timerIsActive = true;
+    }
 
     public void countDownUpdate()
     {
